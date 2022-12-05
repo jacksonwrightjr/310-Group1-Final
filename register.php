@@ -17,7 +17,7 @@
            Enter Phone Number: <input type="text" 
            name="phone_num" required="required" /> <br/>
            Enter Admin Access Code: <input type="text" 
-           name="access_code" required="required" /> <br/>
+           name="access_code"/> <br/>
            <input type="submit" value="Register"/>
         </form>
     </body>
@@ -71,7 +71,7 @@ if($_POST) {
     if($bool) // checks if bool is true
     {
         $is_admin = 0;
-        if ($access_code == 1) {
+        if (isset($access_code) && $access_code == 1) {
             $is_admin = 1;
         } 
         $sql = "INSERT INTO profile (profile_id, username, password, user_fname, user_lname, user_phone, date_created, is_admin) VALUES (0, '$username', '$password', '$first_name', '$last_name', '$phone_num', '$date', '$is_admin')";
