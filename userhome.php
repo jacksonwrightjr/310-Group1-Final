@@ -14,8 +14,9 @@
     <body>
         <h2>Home Page</h2>
         <p>Hello <?php Print "$user"?>!</p> <!--Displays user's name-->
-        <a href="logout.php">Click here to go logout</a><br/><br/>
-        <form action="add.php" method="POST">
+        <a href="logout.php">Click here to go logout</a>
+        <a href="scheduleApp.php">Click here to schedule an appointment</a>
+        <!-- <form action="add.php" method="POST">
             Add more to list: <input type="text" name="details" /> <br/>
             Public post? <input type="checkbox" name="public[]" value="yes" /> <br/>
             <input type="submit" value="Add to list"/>
@@ -28,6 +29,6 @@
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
-		</table>
+		</table> -->
 	</body>
 </html>
