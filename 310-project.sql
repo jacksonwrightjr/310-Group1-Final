@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 05, 2022 at 04:05 PM
+-- Generation Time: Dec 06, 2022 at 04:39 AM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -82,29 +82,6 @@ CREATE TABLE `profile` (
   `user_phone` int(16) NOT NULL,
   `date_created` date NOT NULL,
   `is_admin` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='table for user and admin profiles';
-
---
--- Dumping data for table `profile`
---
-
-INSERT INTO `profile` (`profile_id`, `username`, `password`, `user_fname`, `user_lname`, `user_phone`, `date_created`, `is_admin`) VALUES
-(21, 'gagebroberg', '1Jsprocket', 'Gage', 'Broberg', 2145483826, '2022-12-05', 1),
-(28, 'f', 'f', 'f', 'f', 2145483826, '2022-12-05', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `profiles`
---
-
-CREATE TABLE `profiles` (
-  `user_id` int(10) NOT NULL,
-  `user_fname` varchar(255) NOT NULL,
-  `user_lname` varchar(255) NOT NULL,
-  `user_phone` int(10) NOT NULL,
-  `date_created` date NOT NULL,
-  `user_type` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='table for user and admin profiles';
 
 -- --------------------------------------------------------
@@ -226,7 +203,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `profile_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `profile_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `review`

@@ -3,7 +3,7 @@
         <title>My first PHP Website</title>
     </head>
     <body>
-        <h2>Registration Page</h2>
+        <h2><u>Registration Page</u></h2>
         <a href="index.php">Click here to go back</a>
         <form action="register.php" method="POST">
            Enter Username: <input type="text" 
@@ -16,9 +16,30 @@
            name="last_name" required="required" /> <br/>
            Enter Phone Number: <input type="text" 
            name="phone_num" required="required" /> <br/>
+            <hr>
+
+            <h2>Additional Patient Information</h2>
+           Enter Age: <input type="text" 
+           name="user_age"/> <br/>
+           Enter State: <input type="text" 
+           name="user_state"/> <br/>
+           Enter Zip Code:  <input type="text" 
+           name="user_zip"/> <br/>
+           Enter Street Address:  <input type="text" 
+           name="user_street"/> <br/>
+
+            <div style="display: inline;">
+                <h2>Additional Admin Information</h2>
+                <p>For admin use only</p>
+            </div>
            Enter Admin Access Code: <input type="text" 
            name="access_code"/> <br/>
+           Enter Admin Room Number: <input type="text" 
+           name="rm_num"/> <br/>
+           Enter Admin Office Phone:  <input type="text" 
+           name="off_phone"/> <br/>
            <input type="submit" value="Register"/>
+
         </form>
     </body>
 </html>
@@ -36,6 +57,12 @@ if($_POST) {
     $phone_num = $_POST['phone_num'];
     $date = date('Y-m-d');
     $access_code = $_POST['access_code'];
+    $rm_num = $_POST['rm_num'];
+    $off_phone = $_POST['off_phone'];
+    $user_age = $_POST['user_age'];
+    $user_state = $_POST['user_state'];
+    $user_zip = $_POST['user_zip'];
+    $user_street = $_POST['user_street'];
    
     // database connection vars
     $servername = "localhost";
@@ -78,8 +105,26 @@ if($_POST) {
         // insert in database 
         if($con->query($sql) === TRUE)
         {
-            Print '<script>alert("Successfully Registered!");</script>';     
-            Print '<script>window.location.assign("register.php");</script>';
+            $id = $con->insert_id;
+            if ($is_admin == 1) {
+                $sql = "INSERT INTO admin (admin_id, user_rm_num, user_office_phone) VALUES ('$id', '$rm_num', '$off_phone')";
+                if($con->query($sql) === TRUE) {
+                    Print '<script>alert("Successfully registered admin!");</script>';     
+                    Print '<script>window.location.assign("register.php");</script>';
+                } else {
+                    Print '<script>alert("Admin not registered");</script>';     
+                    Print '<script>window.location.assign("register.php");</script>';
+                }
+            } else {
+                $sql = "INSERT INTO user (user_id, user_age, user_state, user_zip, user_street) VALUES ('$id', '$user_age', '$user_state', '$user_zip', '$user_street')";
+                if($con->query($sql) === TRUE) {
+                    Print '<script>alert("Successfully registered patient!");</script>';     
+                    Print '<script>window.location.assign("register.php");</script>';
+                } else {
+                    Print '<script>alert("Patient not registered");</script>';     
+                    Print '<script>window.location.assign("register.php");</script>';
+                }
+            }
         }
         else
         {
