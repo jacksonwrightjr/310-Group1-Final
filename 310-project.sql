@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 06, 2022 at 04:39 AM
+-- Generation Time: Dec 07, 2022 at 05:39 AM
 -- Server version: 5.7.24
 -- PHP Version: 8.0.1
 
@@ -33,6 +33,16 @@ CREATE TABLE `admin` (
   `user_office_phone` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `user_rm_num`, `user_office_phone`) VALUES
+(4, 1, '3213213214'),
+(5, 2, '3213213215'),
+(6, 3, '3213213216'),
+(7, 4, '3213213217');
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +61,15 @@ CREATE TABLE `appointment` (
   `comment_id` int(11) DEFAULT NULL,
   `review_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`apt_id`, `apt_date`, `apt_start_time`, `apt_end_time`, `apt_price`, `service_id`, `user_id`, `admin_id`, `comment_id`, `review_id`) VALUES
+(1, '2022-12-06', '12:30:40', '13:00:40', 50, 1, 8, 4, NULL, NULL),
+(2, '2022-12-18', '12:00:12', '23:48:55', 100, 3, 8, 6, NULL, NULL),
+(3, '2022-12-06', '23:36:36', '00:36:41', 200, 4, 8, 7, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -84,6 +103,17 @@ CREATE TABLE `profile` (
   `is_admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='table for user and admin profiles';
 
+--
+-- Dumping data for table `profile`
+--
+
+INSERT INTO `profile` (`profile_id`, `username`, `password`, `user_fname`, `user_lname`, `user_phone`, `date_created`, `is_admin`) VALUES
+(4, 'gagebroberg', 'gage123', 'Gage', 'Broberg', 1231231234, '2022-12-06', 1),
+(5, 'jacksonwright', 'jackson123', 'Jackson', 'Wright', 1231231235, '2022-12-06', 1),
+(6, 'kieranbierne', 'kieran123', 'Kieran', 'Bierne', 1231231236, '2022-12-06', 1),
+(7, 'shanebrown', 'shane123', 'Shane', 'Brown', 1231231237, '2022-12-06', 1),
+(8, 'gagebroberg', '1Jsprocket', 'Gage', 'Broberg', 123213213, '2022-12-06', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -112,6 +142,17 @@ CREATE TABLE `service` (
   `service_price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`service_id`, `service_est_time`, `service_name`, `service_price`) VALUES
+(1, 30, 'Consultation', 50),
+(2, 45, 'Teeth Cleaning', 80),
+(3, 45, 'Teeth Whitening', 100),
+(4, 60, 'Tooth Extraction', 200),
+(5, 120, 'Root Canal', 300);
+
 -- --------------------------------------------------------
 
 --
@@ -125,6 +166,13 @@ CREATE TABLE `user` (
   `user_zip` int(11) NOT NULL,
   `user_street` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `user_age`, `user_state`, `user_zip`, `user_street`) VALUES
+(8, 22, 'TX', 75214, 'Test street');
 
 --
 -- Indexes for dumped tables
@@ -191,7 +239,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `apt_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `apt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -203,7 +251,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `profile_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `profile_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `review`
@@ -215,7 +263,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
