@@ -16,6 +16,8 @@
         <p>Hello <?php Print "$user"?>!</p> <!--Displays user's name-->
         <a href="logout.php">Click here to go logout</a>
         <a href="scheduleApp.php">Click here to schedule an appointment</a>
+        <h2 style="align: center">Available Services</h2>
+        <a href="service.php">See Offered Services</a>
     	<h2 style="align: center">Appointments</h2>
         <table style="border: 1px" width="100%">
             <tr>

@@ -139,19 +139,20 @@ CREATE TABLE IF NOT EXISTS `service` (
   `service_id` int(11) NOT NULL,
   `service_est_time` int(11) NOT NULL,
   `service_name` varchar(255) NOT NULL,
-  `service_price` float NOT NULL
+  `service_price` float NOT NULL,
+  `service_description` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `service`
 --
 
-INSERT INTO `service` (`service_id`, `service_est_time`, `service_name`, `service_price`) VALUES
-(1, 30, 'Consultation', 50),
-(2, 45, 'Teeth Cleaning', 80),
-(3, 45, 'Teeth Whitening', 100),
-(4, 60, 'Tooth Extraction', 200),
-(5, 120, 'Root Canal', 300);
+INSERT INTO `service` (`service_id`, `service_est_time`, `service_name`, `service_price`, `service_description`) VALUES
+(1, 30, 'Consultation', 50, 'Non-invasive visit with your dentist where you can discuss any issues that you are experiencing, concerns and treatment options.'),
+(2, 45, 'Teeth Cleaning', 80, 'Dental hygienist will use teeth cleaning instruments to remove plaque and tartar. The more plaque and tartar you have, the longer this step will take.'),
+(3, 45, 'Teeth Whitening', 100, 'A rubber dam is put over your teeth to protect the gums, and a bleaching product is painted onto your teeth. Then a light or laser is shone on the teeth to activate the chemical.'),
+(4, 60, 'Tooth Extraction', 200, 'You will get a local anesthetic to numb the area around the tooth so you do not feel pain. Your dentist will then place forceps around the tooth and pull the tooth out from the gum.'),
+(5, 120, 'Root Canal', 300, 'A treatment to repair and save a badly damaged or infected tooth instead of removing it.');
 
 -- --------------------------------------------------------
 
