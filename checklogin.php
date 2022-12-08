@@ -10,8 +10,6 @@
     $db_password = "root";
     $dbname = "310-project";
 
-// test
-
     // Create connection
     $con = new mysqli($servername, $db_username, $db_password, $dbname);
 
@@ -53,7 +51,7 @@
                     if ($row[7] == 1) {
                         // Print '<script>alert("youre an admin");</script>';
                         $_SESSION['admin'] = true;
-                        header("location: adminhome.php");
+                        header("location: userhome.php");
                     } else {
                         // Print '<script>alert("youre not an admin");</script>';
                         $_SESSION['admin'] = false;

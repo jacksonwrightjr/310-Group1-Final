@@ -41,32 +41,8 @@
         $dbname = "310-project";
 
         // boolean for is the user is admin or not
-        $isAdmin = false;
+        $isAdmin = $_SESSION['isAdmin'];
         $userid = $_SESSION['userid'];
-
-        // Create connection
-        $con = new mysqli($servername, $db_username, $db_password, $dbname);
-
-        // Check connection
-        if ($con->connect_error) {
-            die("Connection failed: " . $con->connect_error);
-        }
-        // see if the user is admin or user
-            $query = "SELECT is_admin FROM profile WHERE username = '$user' AND profile_id = $userid";
-            $result = mysqli_query($con, $query); // Select rows with same username
-            $exists = mysqli_num_rows($result); // count the number of rows, if greater than zero then username exists
-            // printf("Result set has %d rows.\n",$exists);
-            if($exists > 0) //IF there are no returning rows or no existing username
-            {
-                $row = mysqli_fetch_array($result);
-                if ($row[0] == 1) {
-                    // ADMIN
-                    $isAdmin = true;
-                } else {
-                    // USER (NOT ADMIN)
-                    $isAdmin = false;
-                }
-            }
             ?>
             <?php if($isAdmin == true) : ?>
                 <a href="createService.php">Create a Service</a>
