@@ -10,8 +10,6 @@
     $db_password = "root";
     $dbname = "310-project";
 
-// test
-
     // Create connection
     $con = new mysqli($servername, $db_username, $db_password, $dbname);
 
@@ -42,19 +40,25 @@
             if($username == $table_users)  {
                 if($password == $table_password) {
                     $_SESSION['user'] = $username;
-                    $_SESSION['userid'] = $row[0];    // set the username in a session. 
+                    $_SESSION['userid'] = $row[0];
+                    if ($row[7] == 1) {
+                        // admin
+                        $_SESSION['isAdmin'] = true;
+                    } else {
+                        $_SESSION['isAdmin'] = false;
+                    }    
                                                     // This serves as a global variable
                     header("location: userhome.php");     // redirects the user to the authenticated 
                                                     // home page
                 }
                 else {
                     Print '<script>alert("Incorrect Password!");</script>';        // Prompts the user
-                    Print '<script>window.location.assign("index.php");</script>'; // redirects to login.php
+                    Print '<script>window.location.assign("login.php");</script>'; // redirects to login.php
                 }
             }
         }
     } else {
         Print '<script>alert("Incorrect username!");</script>';        // Prompts the user
-        Print '<script>window.location.assign("index.php");</script>'; // redirects to login.php
+        Print '<script>window.location.assign("login.php");</script>'; // redirects to login.php
     }
 ?>
