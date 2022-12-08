@@ -16,8 +16,8 @@
         <a href="login.php"> Click here to login 
         <a href="register.php"> Click here to register 
         <div class="imgcontainer">
-            <h1 style = "text-align: center; text-align: center; font-family: Arial, Helvetica, sans-serif;"> <strong>Employee Sign In</strong></h1>
-            <img src="img/cabologo.png" alt="Cabo logo" style="height:20%;width: 20%; text-align: center;" alt="Avatar" class="avatar">
+            <h1 style = "text-align: center; text-align: center; font-family: Arial, Helvetica, sans-serif;"> <strong>Sign In</strong></h1>
+            <img src="img/tooth.png" alt="Cabo logo" style="height:20%;width: 20%; text-align: center;" alt="Avatar" class="avatar">
           </div>
         
           <div class="container">
