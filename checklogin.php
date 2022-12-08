@@ -10,6 +10,8 @@
     $db_password = "root";
     $dbname = "310-project";
 
+// test comment
+
     // Create connection
     $con = new mysqli($servername, $db_username, $db_password, $dbname);
 
