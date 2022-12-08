@@ -27,7 +27,7 @@
                 <th>Doctor</th>
                 <th>Service</th>
                 <th>Price</th>
-                <th>Review</th>
+                <th>Comments</th>
             </tr>   
         <?php
             // database connection vars
@@ -44,7 +44,10 @@
                 die("Connection failed: " . $con->connect_error);
             }
 
-            $query = "SELECT * FROM appointment WHERE user_id = (SELECT profile_id FROM profile WHERE username = '$user' AND is_admin = 0)";
+            $user_id = $_SESSION['userid'];
+
+            // $query = "SELECT * FROM appointment";
+            $query = "SELECT * FROM appointment WHERE admin_id='$user_id'";
             $result = mysqli_query($con, $query); // Select rows with same username
             $exists = mysqli_num_rows($result); // count the number of rows, if greater than zero then username exists
             // //printf("Result set has %d rows.\n",$exists);
@@ -67,7 +70,7 @@
                             <th>$doctor[0] $doctor[1]</th>
                             <th>$service[0]</th>
                             <th>$$row[4]</th>
-                            <th><a href='review.php'>Leave a review</a></th>
+                            <th><a href='comment.php'>Leave a comment</a></th>
                         </tr>";
                     $count += 1;
                 }
