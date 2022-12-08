@@ -41,20 +41,35 @@
 
             if($username == $table_users)  {
                 if($password == $table_password) {
+                    // set session variables
                     $_SESSION['user'] = $username;
                     $_SESSION['userid'] = $row[0];    // set the username in a session. 
-                                                    // This serves as a global variable
-                    header("location: userhome.php");     // redirects the user to the authenticated 
+                    $_SESSION['admin'] = false;
+                    // Print '<script>alert("test test test");</script>';
+                    // header("location: userhome.php");  
+
+                    // Print '<script>alert("youre an admin");</script>'
+
+                    if ($row[7] == 1) {
+                        // Print '<script>alert("youre an admin");</script>';
+                        $_SESSION['admin'] = true;
+                        header("location: adminhome.php");
+                    } else {
+                        // Print '<script>alert("youre not an admin");</script>';
+                        $_SESSION['admin'] = false;
+                        header("location: userhome.php");  
+                    }   // redirects the user to the authenticated 
                                                     // home page
+                    echo $_SESSION['admin'];
                 }
                 else {
-                    Print '<script>alert("Incorrect Credentials!");</script>';        // Prompts the user
+                    Print '<script>alert("Incorrect Password!");</script>';        // Prompts the user
                     Print '<script>window.location.assign("index.php");</script>'; // redirects to login.php
                 }
             }
         }
     } else {
-        Print '<script>alert("Incorrect Credentials!");</script>';        // Prompts the user
+        Print '<script>alert("Incorrect username!");</script>';        // Prompts the user
         Print '<script>window.location.assign("index.php");</script>'; // redirects to login.php
     }
 ?>
