@@ -10,6 +10,7 @@
     <div class = "topnav">
     <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold">Aggie Dentistry</a>
     <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "userhome.php"> Home </a>
+    
 
 
     <div class="topnav-right">

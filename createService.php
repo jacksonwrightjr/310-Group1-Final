@@ -1,6 +1,9 @@
 <html>
     <head>
-        <title>My first PHP Website</title>
+        <title>Create Service</title>
+        <link rel = "stylesheet" href = "style.css">
+        <!-- <link rel= "icon" type = "image" href = "img/tooth.png"> -->
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     </head>
     <?php
     session_start(); //starts the session
@@ -11,10 +14,20 @@
     }
     $user = $_SESSION['user']; //assigns user value
     ?>
-    <body>
+    <body style="background-color:rgb(232, 231, 220);">
+    <div class = "topnav">
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold">Aggie Dentistry</a>
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "userhome.php"> Home </a>
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "service.php"> Back to Service Page </a>
+
+
+
+    <div class="topnav-right">
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "logout.php"> Logout </a>
+    </div>
+    </div>
+    <div style = "margin-left:auto;margin-right:auto;" class = "imgcontainer">
         <h2>Create a new Service</h2>
-        <a href="service.php">Back to Service Page</a>
-        <a href="logout.php">Click here to go logout</a>
         
         <form action="createService.php" method="post">
         Service Est. Time: <input type="text" name="serviceEstTime"><br>
@@ -23,7 +36,7 @@
         Service Description: <input type="text" name="serviceDesc"><br>
         <input type="submit">
         </form>
-
+    </div>
 	</body>
 </html>
 
