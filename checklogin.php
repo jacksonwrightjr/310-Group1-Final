@@ -39,7 +39,8 @@
 
             if($username == $table_users)  {
                 if($password == $table_password) {
-                    $_SESSION['user'] = $username;    // set the username in a session. 
+                    $_SESSION['user'] = $username;
+                    $_SESSION['userid'] = $row[0];    // set the username in a session. 
                                                     // This serves as a global variable
                     header("location: userhome.php");     // redirects the user to the authenticated 
                                                     // home page
