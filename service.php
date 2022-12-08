@@ -1,7 +1,23 @@
 <html>
     <head>
-        <title>My first PHP Website</title>
+        <title>Services</title>
+        <link rel = "stylesheet" href = "style.css">
+        <!-- <link rel= "icon" type = "image" href = "img/tooth.png"> -->
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     </head>
+    
+    <body style="background-color:rgb(232, 231, 220);">
+    <div class = "topnav">
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold">Aggie Dentistry</a>
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "userhome.php"> Home </a>
+
+
+    <div class="topnav-right">
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "logout.php"> Logout </a>
+    </div>
+    </div>
+    <div style = "margin-left:auto;margin-right:auto;" class = "imgcontainer">
+
     <?php
     session_start(); //starts the session
     if($_SESSION['user']){ // checks if the user is logged in  
@@ -12,11 +28,9 @@
     $user = $_SESSION['user']; //assigns user value
     ?>
     <body>
-        <h2>Services Page</h2>
-        <p>Hello <?php Print "$user"?>!</p> <!--Displays user's name-->
-        <p>Here is a list of available services for you.</p>
-        <a href="logout.php">Click here to go logout</a>
-        <a href="scheduleApp.php">Click here to schedule an appointment</a>
+        <p>Here is a list of available services for you, <?php Print "$user"?>.</p>
+        <!-- <a href="logout.php">Click here to go logout</a>
+        <a href="scheduleApp.php">Click here to schedule an appointment</a> -->
         <h2 style="align: center">Services</h2>
         <?php
         // database connection vars
@@ -111,6 +125,14 @@
                     {
                         $count = 1;
                         while ($row = mysqli_fetch_array($result)) {
+                            // get doctor info
+                            // $getDoctorName = "SELECT user_fname, user_lname FROM profile WHERE profile_id = $row[7]";
+                            // $docresult = mysqli_query($con, $getDoctorName); // Select rows with same username
+                            // $doctor = mysqli_fetch_array($docresult);
+                            // get service info
+                            // $getServiceName = "SELECT service_name FROM service WHERE service_id = $row[5]";
+                            // $serviceresult = mysqli_query($con, $getServiceName); // Select rows with same username
+                            // $service = mysqli_fetch_array($serviceresult);
                             echo "<tr>
                                     <th><p>$row[0]</p></th>
                                     <th>$row[1]</th>
@@ -125,6 +147,6 @@
                 ?>
                 </table>
             <?php endif; ?>
-            
+            </div> 
 	</body>
 </html>

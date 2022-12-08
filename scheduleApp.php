@@ -1,10 +1,23 @@
 <html>
     <head>
-        <title>My first PHP Website</title>
+        <title>Schedule</title>
+        <link rel = "stylesheet" href = "style.css">
+        <!-- <link rel= "icon" type = "image" href = "img/tooth.png"> -->
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     </head>
-    <body>
-        <h2>Schedule Appointment</h2>
-        <a href="logout.php">Click here to go logout</a><br>
+    <body style="background-color:rgb(232, 231, 220);">
+    <div class = "topnav">
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold">Aggie Dentistry</a>
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "userhome.php"> Home </a>
+
+
+    <div class="topnav-right">
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "logout.php"> Logout </a>
+    </div>
+    </div>
+    <div style = "margin-left:auto;margin-right:auto;" class = "imgcontainer">
+        <h2>Schedule an Appointment</h2>
+        <!-- <a href="logout.php">Click here to go logout</a><br> -->
         <form action="scheduleApp.php" method="POST">
             Select a service: <select name="service" id="service">
                 <option value="Consultation">Consultation</option>
@@ -13,12 +26,16 @@
                 <option value="Tooth Extraction">Tooth Extraction</option>
                 <option value="Root Canal">Root Canal</option>
             </select>
+            <br>
+            <br>
             Select a dentist: <select name="dentist" id="dentist">
                 <option value="Gage Broberg">Gage Broberg</option>
                 <option value="Jackson Wright">Jackson Wright</option>
                 <option value="Kieran Bierne">Kieran Bierne</option>
                 <option value="Shane Brown">Shane Brown</option>
             </select>
+            <br>
+            <br>
             Choose a time for your appointment: 
             <?php
                 session_start(); //starts the session
@@ -28,7 +45,7 @@
             ?> 
             <input type="submit" value="Submit"/>
         </form>
-    	
+            </div>
 	</body>
 </html>
 
