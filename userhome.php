@@ -25,7 +25,7 @@
         header("location: index.php"); // redirects if user is not logged in
     }
     $user = $_SESSION['user']; //assigns user value
-    $isAdmin = $_SESSION['isAdmin'];
+    $isAdmin = $_SESSION['admin'];
     $userid = $_SESSION['userid'];
     ?>
     <body>
