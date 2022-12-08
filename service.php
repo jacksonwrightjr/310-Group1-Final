@@ -10,6 +10,7 @@
     <div class = "topnav">
     <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold">Aggie Dentistry</a>
     <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "userhome.php"> Home </a>
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "profile.php"> Profile </a>
     
 
 
@@ -41,7 +42,7 @@
         $dbname = "310-project";
 
         // boolean for is the user is admin or not
-        $isAdmin = $_SESSION['isAdmin'];
+        $isAdmin = $_SESSION['admin'];
         $userid = $_SESSION['userid'];
             ?>
             <?php if($isAdmin == true) : ?>
