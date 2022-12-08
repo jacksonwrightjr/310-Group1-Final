@@ -108,7 +108,6 @@
                 <th>Doctor</th>
                 <th>Service</th>
                 <th>Price</th>
-                <th>Comments</th>
                 <th>Review</th>
             </tr>   
         <?php
@@ -129,27 +128,47 @@
             $query = "SELECT * FROM appointment WHERE user_id = (SELECT profile_id FROM profile WHERE username = '$user' AND profile_id = $userid)";
             $result = mysqli_query($con, $query); // Select rows with same username
             $exists = mysqli_num_rows($result); // count the number of rows, if greater than zero then username exists
+            $appIds = array();
             // //printf("Result set has %d rows.\n",$exists);
             if($exists > 0) //IF there are no returning rows or no existing username
             {
                 $count = 1;
                 while ($row = mysqli_fetch_array($result)) {
+                    // add the appId to array
+                    $appIds[$count - 1] = $row[0];
                     // get doctor info
                     $getDoctorName = "SELECT user_fname, user_lname FROM profile WHERE profile_id = $row[7]";
                     $docresult = mysqli_query($con, $getDoctorName); // Select rows with same username
                     $doctor = mysqli_fetch_array($docresult);
+                    $doctors[$count - 1] = $doctor;
                     // get service info
                     $getServiceName = "SELECT service_name FROM service WHERE service_id = $row[5]";
                     $serviceresult = mysqli_query($con, $getServiceName); // Select rows with same username
                     $service = mysqli_fetch_array($serviceresult);
+                    // get comment info
+                    if(!is_null($row[8])) {
+                        $getComment = "SELECT comment_value FROM comment WHERE comment_id = $row[8]";
+                        $commentresult = mysqli_query($con, $getComment); // Select rows with same username
+                        $comment = mysqli_fetch_array($commentresult);
+                    } else {
+                        $getComment = "SELECT comment_value FROM comment WHERE comment_id = NULL";
+                        $commentresult = mysqli_query($con, $getComment); // Select rows with same username
+                        $comment = mysqli_fetch_array($commentresult);
+                    }
                     echo "<tr>
                             <th>$count</th>
                             <th>$row[1]</th>
                             <th>$row[2]</th>
                             <th>$doctor[0] $doctor[1]</th>
                             <th>$service[0]</th>
-                            <th>$$row[4]</th>
-                            <th><a href='review.php'>Leave a review</a></th>
+                            <th>$row[4]</th>
+                            <th><form action='userhome.php' method='POST'>
+                                <textarea id='comment' name='comment$row[0]' cols='40' rows='5'>$comment[0]</textarea>
+                                <input type='submit' value='Comment'/>
+                            </form></th>
+                            <th><form action='deleteAppointment.php' method='post'><input type='hidden' name='apt_del'
+                                value=$row[0]><input type='submit' value='DELETE'>
+                            </form></th>
                         </tr>";
                     $count += 1;
                 }
@@ -162,3 +181,33 @@
         
 	</body>
 </html>
+
+<?php
+if($_POST) {
+    $date = date('Y-m-d H:i:s');
+    for ($x = 0; $x < $exists; $x++) {
+        $doctorFirstName = $doctors[$x][0];
+        $doctorLastName = $doctors[$x][1];
+        $comment = $_POST["comment$appIds[$x]"];
+        if ($_POST["comment$appIds[$x]"] != "") {
+            $sql = "INSERT INTO comment (comment_id, comment_date, comment_value, user_id, admin_id, apt_id) VALUES (0, '$date', '$comment', (SELECT profile_id FROM profile WHERE username = '$user' AND is_admin = 0), (SELECT profile_id FROM profile WHERE user_fname = '$doctorFirstName' AND user_lname = '$doctorLastName' AND is_admin = 1), $appIds[$x])";
+            if($con->query($sql) === TRUE) {
+                $sql = "UPDATE appointment SET comment_id = $con->insert_id WHERE apt_id = $appIds[$x]";
+                if($con->query($sql) === TRUE) {
+                    Print '<script>alert("Successfully added comment!");</script>';     
+                    Print '<script>window.location.assign("userhome.php");</script>';
+                } else {
+                    Print '<script>alert("Comment not added!");</script>';     
+                    Print '<script>window.location.assign("userhome.php");</script>';
+                }
+            } else {
+                Print '<script>alert("Comment not added!");</script>';     
+                Print '<script>window.location.assign("userhome.php");</script>';
+            }
+        } else {
+            // this appointment did not have a comment submitted
+        }
+        
+    }
+}
+?>
