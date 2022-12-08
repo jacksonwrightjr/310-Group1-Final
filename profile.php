@@ -63,7 +63,8 @@
                             <p style = 'text-align:center; font-family: Arial, Helvetica, sans-serif;'>First Name: $row[3]</p>
                             <p style = 'text-align:center; font-family: Arial, Helvetica, sans-serif;'>Last Name: $row[4]</p>
                             <p style = 'text-align:center; font-family: Arial, Helvetica, sans-serif;'>Phone Number: $row[5]</p>
-                            <p style = 'text-align:center; font-family: Arial, Helvetica, sans-serif;'>Date Joined: $row[6]</p>";
+                            <p style = 'text-align:center; font-family: Arial, Helvetica, sans-serif;'>Date Joined: $row[6]</p>
+                            <p style = 'text-align:center; font-family: Arial, Helvetica, sans-serif;'>Account Type: ADMIN</p>";
                             $count += 1;
                         }
                     }
@@ -98,7 +99,8 @@
                             <p style = 'text-align:center; font-family: Arial, Helvetica, sans-serif;'>First Name: $row[3]</p>
                             <p style = 'text-align:center; font-family: Arial, Helvetica, sans-serif;'>Last Name: $row[4]</p>
                             <p style = 'text-align:center; font-family: Arial, Helvetica, sans-serif;'>Phone Number: $row[5]</p>
-                            <p style = 'text-align:center; font-family: Arial, Helvetica, sans-serif;'>Date Joined: $row[6]</p>";
+                            <p style = 'text-align:center; font-family: Arial, Helvetica, sans-serif;'>Date Joined: $row[6]</p>
+                            <p style = 'text-align:center; font-family: Arial, Helvetica, sans-serif;'>Account Type: USER</p>";
                             $count += 1;
                         }
                     }
