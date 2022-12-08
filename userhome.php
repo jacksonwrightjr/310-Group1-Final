@@ -1,7 +1,21 @@
 <html>
     <head>
-        <title>My first PHP Website</title>
+        <title>Homepage</title>
+        <link rel = "stylesheet" href = "style.css">
+        <!-- <link rel= "icon" type = "image" href = "img/tooth.png"> -->
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     </head>
+    <body style="background-color:rgb(232, 231, 220);">
+
+    <div class = "topnav">
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold">Aggie Dentistry</a>
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "userhome.php"> Home </a>
+
+    <div class="topnav-right">
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "logout.php"> Logout </a>
+    </div>
+    </div>
+
     <?php
     session_start(); //starts the session
     if($_SESSION['user']){ // checks if the user is logged in  
@@ -12,13 +26,15 @@
     $user = $_SESSION['user']; //assigns user value
     ?>
     <body>
-        <h2>Home Page</h2>
-        <p>Hello <?php Print "$user"?>!</p> <!--Displays user's name-->
-        <a href="logout.php">Click here to go logout</a>
+    <div style = "text-align:center;">
+        <p style = "text-align:center; font-family: Arial, Helvetica, sans-serif;">Howdy <?php Print "$user"?>!</p> <!--Displays user's name-->
+        <!-- <a href="logout.php">Click here to go logout</a> -->
+        
         <a href="scheduleApp.php">Click here to schedule an appointment</a>
         <h2 style="align: center">Available Services</h2>
         <a href="service.php">See Offered Services</a>
     	<h2 style="align: center">Appointments</h2>
+        </div>
         <table style="border: 1px" width="100%">
             <tr>
                 <th>Appointment Number</th>
