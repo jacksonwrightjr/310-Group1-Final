@@ -149,7 +149,6 @@
                             <th>$doctor[0] $doctor[1]</th>
                             <th>$service[0]</th>
                             <th>$$row[4]</th>
-                            <th><a href='comment.php'>Leave a comment</a></th>
                             <th><a href='review.php'>Leave a review</a></th>
                         </tr>";
                     $count += 1;
