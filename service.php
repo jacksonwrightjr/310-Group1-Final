@@ -134,14 +134,14 @@
                     {
                         $count = 1;
                         while ($row = mysqli_fetch_array($result)) {
-                            // get doctor info
-                            $getDoctorName = "SELECT user_fname, user_lname FROM profile WHERE profile_id = $row[7]";
-                            $docresult = mysqli_query($con, $getDoctorName); // Select rows with same username
-                            $doctor = mysqli_fetch_array($docresult);
-                            // get service info
-                            $getServiceName = "SELECT service_name FROM service WHERE service_id = $row[5]";
-                            $serviceresult = mysqli_query($con, $getServiceName); // Select rows with same username
-                            $service = mysqli_fetch_array($serviceresult);
+                            // // get doctor info
+                            // $getDoctorName = "SELECT user_fname, user_lname FROM profile WHERE profile_id = $row[7]";
+                            // $docresult = mysqli_query($con, $getDoctorName); // Select rows with same username
+                            // $doctor = mysqli_fetch_array($docresult);
+                            // // get service info
+                            // $getServiceName = "SELECT service_name FROM service WHERE service_id = $row[5]";
+                            // $serviceresult = mysqli_query($con, $getServiceName); // Select rows with same username
+                            // $service = mysqli_fetch_array($serviceresult);
                             echo "<tr>
                                     <th><p>$row[0]</p></th>
                                     <th>$row[1]</th>
