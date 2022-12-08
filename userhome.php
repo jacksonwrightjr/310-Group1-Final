@@ -108,7 +108,6 @@
                 <th>Doctor</th>
                 <th>Service</th>
                 <th>Price</th>
-                <th>Comments</th>
                 <th>Review</th>
             </tr>   
         <?php
