@@ -47,12 +47,12 @@
                 }
                 else {
                     Print '<script>alert("Incorrect Password!");</script>';        // Prompts the user
-                    Print '<script>window.location.assign("login.php");</script>'; // redirects to login.php
+                    Print '<script>window.location.assign("index.php");</script>'; // redirects to login.php
                 }
             }
         }
     } else {
         Print '<script>alert("Incorrect username!");</script>';        // Prompts the user
-        Print '<script>window.location.assign("login.php");</script>'; // redirects to login.php
+        Print '<script>window.location.assign("index.php");</script>'; // redirects to login.php
     }
 ?>
