@@ -1,21 +1,5 @@
 <html>
     <head>
-<<<<<<< HEAD
-        <title>My first PHP Website</title>
-    </head>
-    <body>
-        <h2>Login Page</h2>
-        <a href="index.php">Click here to go back</a>
-        <form action="checklogin.php" method="POST">
-           Enter Username: <input type="text" 
-           name="username" required="required" /> <br/>
-           Enter password: <input type="password" 
-           name="password" required="required" /> <br/>
-           <input type="submit" value="Login"/>
-        </form>
-    </body>
-</html>
-=======
         <title>Login</title>
         <link rel = "stylesheet" href = "style.css">
         <link rel= "icon" type = "image/x-icon" href = "img/tooth.png">
@@ -44,4 +28,3 @@
         </div>
     </body>
 </html>
->>>>>>> 8414af2 (front end additions to index and sign in)
