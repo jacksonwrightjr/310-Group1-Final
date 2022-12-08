@@ -30,7 +30,6 @@
                 <th>Comments</th>
                 <th>Review</th>
             </tr>   
-            <form action='userhome.php' method='POST'>
         <?php
             // database connection vars
             $servername = "localhost";
@@ -83,18 +82,19 @@
                             <th>$doctor[0] $doctor[1]</th>
                             <th>$service[0]</th>
                             <th>$row[4]</th>
-                            <th><textarea name='comment$row[0]' cols='40' rows='5'>$comment[0]</textarea><input type='submit' value='Submit'/></th>
-                            <th><a href='review.php'>Leave a review</a></th>
-                            <form action='deleteService.php' method='post'><input type='hidden' name='delete'
+                            <th><form action='userhome.php' method='POST'>
+                                <textarea id='comment' name='comment$row[0]' cols='40' rows='5'>$comment[0]</textarea>
+                                <input type='submit' value='Comment'/>
+                            </form></th>
+                            <th><form action='deleteAppointment.php' method='post'><input type='hidden' name='apt_del'
                                 value=$row[0]><input type='submit' value='DELETE'>
-                            </form>
+                            </form></th>
                         </tr>";
                     $count += 1;
                 }
             }
 
         ?>
-        </form>
 		</table>
 	</body>
 </html>
@@ -103,23 +103,28 @@
 if($_POST) {
     $date = date('Y-m-d H:i:s');
     for ($x = 0; $x < $exists; $x++) {
-        // echo $appIds[$x];
-        // echo $doctors[$x][0];
         $doctorFirstName = $doctors[$x][0];
         $doctorLastName = $doctors[$x][1];
         $comment = $_POST["comment$appIds[$x]"];
-        echo $comment;
-        // echo $comment;
-        $sql = "INSERT INTO comment (comment_id, comment_date, comment_value, user_id, admin_id, apt_id) VALUES (0, '$date', '$comment', (SELECT profile_id FROM profile WHERE username = '$user' AND is_admin = 0), (SELECT profile_id FROM profile WHERE user_fname = '$doctorFirstName' AND user_lname = '$doctorLastName' AND is_admin = 1), $appIds[$x])";
-        echo $sql;
-        // $sql = "UPDATE appointment SET comment_id WHERE clause to select which records to change";
-        if($con->query($sql) === TRUE) {
-            Print '<script>alert("Successfully added comment!");</script>';     
-            Print '<script>window.location.assign("userhome.php");</script>';
+        if ($_POST["comment$appIds[$x]"] != "") {
+            $sql = "INSERT INTO comment (comment_id, comment_date, comment_value, user_id, admin_id, apt_id) VALUES (0, '$date', '$comment', (SELECT profile_id FROM profile WHERE username = '$user' AND is_admin = 0), (SELECT profile_id FROM profile WHERE user_fname = '$doctorFirstName' AND user_lname = '$doctorLastName' AND is_admin = 1), $appIds[$x])";
+            if($con->query($sql) === TRUE) {
+                $sql = "UPDATE appointment SET comment_id = $con->insert_id WHERE apt_id = $appIds[$x]";
+                if($con->query($sql) === TRUE) {
+                    Print '<script>alert("Successfully added comment!");</script>';     
+                    Print '<script>window.location.assign("userhome.php");</script>';
+                } else {
+                    Print '<script>alert("Comment not added!");</script>';     
+                    Print '<script>window.location.assign("userhome.php");</script>';
+                }
+            } else {
+                Print '<script>alert("Comment not added!");</script>';     
+                Print '<script>window.location.assign("userhome.php");</script>';
+            }
         } else {
-            Print '<script>alert("Comment not added!");</script>';     
-            Print '<script>window.location.assign("userhome.php");</script>';
+            // this appointment did not have a comment submitted
         }
+        
     }
 }
 ?>
