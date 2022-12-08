@@ -48,13 +48,13 @@
                                                     // home page
                 }
                 else {
-                    Print '<script>alert("Incorrect Password!");</script>';        // Prompts the user
+                    Print '<script>alert("Incorrect Credentials!");</script>';        // Prompts the user
                     Print '<script>window.location.assign("index.php");</script>'; // redirects to login.php
                 }
             }
         }
     } else {
-        Print '<script>alert("Incorrect username!");</script>';        // Prompts the user
+        Print '<script>alert("Incorrect Credentials!");</script>';        // Prompts the user
         Print '<script>window.location.assign("index.php");</script>'; // redirects to login.php
     }
 ?>
