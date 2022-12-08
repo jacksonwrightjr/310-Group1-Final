@@ -1,10 +1,18 @@
 <html>
     <head>
-        <title>My first PHP Website</title>
+        <title>Regsiter</title>
+        <link rel = "stylesheet" href = "style.css">
+        <!-- <link rel= "icon" type = "image" href = "img/tooth.png"> -->
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     </head>
-    <body>
+    <body style="background-color:rgb(232, 231, 220);">
+
+    <div class = "topnav">
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold">Aggie Dentistry</a>
+    <a style="font-family: Arial, Helvetica, sans-serif; font-weight:bold" href = "index.php"> Home </a>
+    </div>
+    <div style = "margin-left:auto;margin-right:auto;" class = "imgcontainer">
         <h2><u>Registration Page</u></h2>
-        <a href="index.php">Click here to go back</a>
         <form action="register.php" method="POST">
            Enter Username: <input type="text" 
            name="username" required="required" /> <br/>
@@ -16,9 +24,9 @@
            name="last_name" required="required" /> <br/>
            Enter Phone Number: <input type="text" 
            name="phone_num" required="required" /> <br/>
-            <hr>
 
             <h2>Additional Patient Information</h2>
+            <p> For patient use only <p>
            Enter Age: <input type="text" 
            name="user_age"/> <br/>
            Enter State: <input type="text" 
@@ -38,7 +46,7 @@
            name="rm_num"/> <br/>
            Enter Admin Office Phone:  <input type="text" 
            name="off_phone"/> <br/>
-           <input type="submit" value="Register"/>
+           <button type="submit" value="Register">Register</button>
 
         </form>
     </body>
@@ -134,3 +142,5 @@ if($_POST) {
     }
 }
 ?>
+
+</div>

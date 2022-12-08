@@ -42,9 +42,6 @@
         </form>
 
 
-        <br>
-        <br>
-
         
         <ul>
         <div style = "margin-left:auto;margin-right:auto; list-style-type:none;" class = "container">
