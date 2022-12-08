@@ -8,7 +8,7 @@
     position: sticky;
     z-index: 1;
   }
-  
+
   /* Style the links inside the navigation bar */
   .topnav a {
     float: left;
@@ -18,14 +18,14 @@
     text-decoration: none;
     font-size: 17px;
   }
-  
-  
+
+
   /* Change the color of links on hover */
   .topnav a:hover {
     background-color: #ddd;
     color: black;
   }
-  
+
   /* Add a color to the active/current link */
   .topnav a.active {
     background-color: #04AA6D;
@@ -39,16 +39,15 @@
   /* Center the avatar image inside this container */
   .imgcontainer {
     text-align: center;
-    margin: 24px 0 12px 0;
+    margin: 40px 0 12px 0;
   }
-  
-  /* Avatar image */
+
+
   img.avatar {
-    width: 40%;
-    border-radius: 50%;
+    border-radius: 5%;
   }
-  
-  /* Add padding to containers */
+
+
   .container {
     padding: 16px;
   }
