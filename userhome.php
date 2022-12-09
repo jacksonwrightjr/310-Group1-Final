@@ -53,6 +53,7 @@
                 <th>Delete?</th>
             </tr>   
         <?php
+            error_reporting(E_ERROR | E_PARSE);
             // database connection vars
             $servername = "localhost";
             $db_username = "root";
@@ -73,11 +74,14 @@
             $query = "SELECT * FROM appointment WHERE admin_id='$user_id'";
             $result = mysqli_query($con, $query); // Select rows with same username
             $exists = mysqli_num_rows($result); // count the number of rows, if greater than zero then username exists
+            $appIds = array();
             // //printf("Result set has %d rows.\n",$exists);
             if($exists > 0) //IF there are no returning rows or no existing username
             {
                 $count = 1;
                 while ($row = mysqli_fetch_array($result)) {
+                    // add the appId to array
+                    $appIds[$count - 1] = $row[0];
                     // get doctor info
                     $getDoctorName = "SELECT user_fname, user_lname FROM profile WHERE profile_id = $row[7]";
                     $docresult = mysqli_query($con, $getDoctorName); // Select rows with same username
@@ -117,7 +121,7 @@
                                 <textarea id='comment' name='comment$row[0]' cols='40' rows='5'>$comment[0]</textarea>
                                 <input type='submit' value='Submit'/>
                             </form></th>
-                            <th><textarea id='review' name='review$row[0]' cols='40' rows='5'>$review[0]</textarea></th>
+                            <th><p id='review' name='review$row[0]'>$review[0]</p></th>
                             <th><form action='deleteAppointment.php' method='post'><input type='hidden' name='apt_del'
                                 value=$row[0]><input type='submit' value='DELETE'>
                             </form></th>
@@ -140,6 +144,7 @@
                 <th>Review</th>
             </tr>   
         <?php
+            error_reporting(E_ERROR | E_PARSE);
             // database connection vars
             $servername = "localhost";
             $db_username = "root";
@@ -216,10 +221,11 @@ if($_POST) {
         // $doctorLastName = $doctors[$x][1];
         $comment = $_POST["comment$appIds[$x]"];
         $review = $_POST["review$appIds[$x]"];
-        
+        // Print '<script>alert("made it here!");</script>';
+
         if (isset($_POST["comment$appIds[$x]"])) {
+            Print '<script>alert("made it to comment!");</script>';
             $sql = "INSERT INTO comment (comment_id, comment_date, comment_value, user_id, admin_id, apt_id) VALUES (0, '$date', '$comment', (SELECT user_id FROM appointment WHERE apt_id = $appIds[$x]), (SELECT admin_id FROM appointment WHERE apt_id = $appIds[$x]), $appIds[$x])";
-            $sql = "INSERT INTO review (review_id, review_date, review_value, user_id, admin_id, apt_id) VALUES (0, '$date', '$review', (SELECT user_id FROM appointment WHERE apt_id = $appIds[$x]), (SELECT admin_id FROM appointment WHERE apt_id = $appIds[$x]), $appIds[$x])";
             if($con->query($sql) === TRUE) {
                 $sql = "UPDATE appointment SET comment_id = $con->insert_id WHERE apt_id = $appIds[$x]";
                 if($con->query($sql) === TRUE) {
@@ -234,6 +240,7 @@ if($_POST) {
                 Print '<script>window.location.assign("userhome.php");</script>';
             }
         } elseif (isset($_POST["review$appIds[$x]"])) {
+            Print '<script>alert("made it to review!");</script>';
             $sql = "INSERT INTO review (review_id, review_date, review_value, user_id, admin_id, apt_id) VALUES (0, '$date', '$review', (SELECT user_id FROM appointment WHERE apt_id = $appIds[$x]), (SELECT admin_id FROM appointment WHERE apt_id = $appIds[$x]), $appIds[$x])";
             if ($con->query($sql) === TRUE) {
                 $sql = "UPDATE appointment SET review_id = $con->insert_id WHERE apt_id = $appIds[$x]";
@@ -251,6 +258,7 @@ if($_POST) {
             }
         } else {
             // do nothing, no comment or review added
+            Print '<script>alert("Nothing happened");</script>';
         }
         
     }
