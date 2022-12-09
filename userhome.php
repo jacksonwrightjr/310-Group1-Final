@@ -163,6 +163,14 @@
                     $serviceresult = mysqli_query($con, $getServiceName); // Select rows with same username
                     $service = mysqli_fetch_array($serviceresult);
                     // get comment info
+                    if(!is_null($row[8])) {
+                        $getComment = "SELECT comment_value FROM comment WHERE comment_id = $row[8]";
+                        $commentresult = mysqli_query($con, $getComment); // Select rows with same username
+                        $comment = mysqli_fetch_array($commentresult);
+                    } else {
+                        $getComment = "SELECT comment_value FROM comment WHERE comment_id = NULL";
+                        $commentresult = mysqli_query($con, $getComment); // Select rows with same username
+                        $comment = mysqli_fetch_array($commentresult);
                     if(!is_null($row[7])) {
                         $getReview = "SELECT review_value FROM review WHERE review_id = $row[7]";
                         $reviewResult = mysqli_query($con, $getReview); // Select rows with same username
@@ -180,6 +188,11 @@
                             <th>$service[0]</th>
                             <th>$row[4]</th>
                             <th><form action='userhome.php' method='POST'>
+                                <textarea id='comment' name='comment$row[0]' cols='40' rows='5'>$comment[0]</textarea>
+                                <input type='submit' value='Comment'/>
+                            </form></th>
+                            <th><form action='deleteAppointment.php' method='post'><input type='hidden' name='apt_del'
+                                value=$row[0]><input type='submit' value='DELETE'>
                                 <textarea id='review' name='review$row[0]' cols='40' rows='5'>$review[0]</textarea>
                                 <input type='submit' value='Submit'/>
                             </form></th>
@@ -203,7 +216,7 @@ if($_POST) {
         $doctorFirstName = $doctors[$x][0];
         $doctorLastName = $doctors[$x][1];
         $comment = $_POST["comment$appIds[$x]"];
-        if ($_POST["comment$appIds[$x]"] != "") {
+        if (isset($_POST["comment$appIds[$x]"])) {
             $sql = "INSERT INTO comment (comment_id, comment_date, comment_value, user_id, admin_id, apt_id) VALUES (0, '$date', '$comment', (SELECT profile_id FROM profile WHERE username = '$user' AND is_admin = 0), (SELECT profile_id FROM profile WHERE user_fname = '$doctorFirstName' AND user_lname = '$doctorLastName' AND is_admin = 1), $appIds[$x])";
             if($con->query($sql) === TRUE) {
                 $sql = "UPDATE appointment SET comment_id = $con->insert_id WHERE apt_id = $appIds[$x]";
