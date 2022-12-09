@@ -197,6 +197,11 @@
                             <th>$service[0]</th>
                             <th>$row[4]</th>
                             <th><form action='userhome.php' method='POST'>
+                                <textarea id='comment' name='comment$row[0]' cols='40' rows='5'>$comment[0]</textarea>
+                                <input type='submit' value='Comment'/>
+                            </form></th>
+                            <th><form action='deleteAppointment.php' method='post'><input type='hidden' name='apt_del'
+                                value=$row[0]><input type='submit' value='DELETE'>
                                 <textarea id='review' name='review$row[0]' cols='40' rows='5'>$review[0]</textarea>
                                 <input type='submit' value='Submit'/>
                             </form></th>
