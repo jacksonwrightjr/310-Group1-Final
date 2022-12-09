@@ -190,7 +190,7 @@ if($_POST) {
         $doctorFirstName = $doctors[$x][0];
         $doctorLastName = $doctors[$x][1];
         $comment = $_POST["comment$appIds[$x]"];
-        if ($_POST["comment$appIds[$x]"] != "") {
+        if (isset($_POST["comment$appIds[$x]"])) {
             $sql = "INSERT INTO comment (comment_id, comment_date, comment_value, user_id, admin_id, apt_id) VALUES (0, '$date', '$comment', (SELECT profile_id FROM profile WHERE username = '$user' AND is_admin = 0), (SELECT profile_id FROM profile WHERE user_fname = '$doctorFirstName' AND user_lname = '$doctorLastName' AND is_admin = 1), $appIds[$x])";
             if($con->query($sql) === TRUE) {
                 $sql = "UPDATE appointment SET comment_id = $con->insert_id WHERE apt_id = $appIds[$x]";
