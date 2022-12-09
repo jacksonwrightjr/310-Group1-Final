@@ -35,5 +35,4 @@ else
     Print '<script>alert("Appointment not deleted");</script>';     
     Print '<script>window.location.assign("userhome.php");</script>';
 }
-
 ?>

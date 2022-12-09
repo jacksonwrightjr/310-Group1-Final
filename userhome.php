@@ -49,6 +49,7 @@
                 <th>Service</th>
                 <th>Price</th>
                 <th>Comments</th>
+                <th>Delete?</th>
             </tr>   
         <?php
             // database connection vars
@@ -84,6 +85,16 @@
                     $getServiceName = "SELECT service_name FROM service WHERE service_id = $row[5]";
                     $serviceresult = mysqli_query($con, $getServiceName); // Select rows with same username
                     $service = mysqli_fetch_array($serviceresult);
+                    // get review info
+                    if(!is_null($row[8])) {
+                        $getComment = "SELECT comment_value FROM comment WHERE comment_id = $row[8]";
+                        $commentresult = mysqli_query($con, $getComment); // Select rows with same username
+                        $comment = mysqli_fetch_array($commentresult);
+                    } else {
+                        $getComment = "SELECT comment_value FROM comment WHERE comment_id = NULL";
+                        $commentresult = mysqli_query($con, $getComment); // Select rows with same username
+                        $comment = mysqli_fetch_array($commentresult);
+                    }
                     echo "<tr>
                             <th>$count</th>
                             <th>$row[1]</th>
@@ -91,7 +102,13 @@
                             <th>$doctor[0] $doctor[1]</th>
                             <th>$service[0]</th>
                             <th>$$row[4]</th>
-                            <th><a href='comment.php'>Leave a comment</a></th>
+                            <th><form action='userhome.php' method='POST'>
+                                <textarea id='comment' name='comment$row[0]' cols='40' rows='5'>$comment[0]</textarea>
+                                <input type='submit' value='Submit'/>
+                            </form></th>
+                            <th><form action='deleteAppointment.php' method='post'><input type='hidden' name='apt_del'
+                                value=$row[0]><input type='submit' value='DELETE'>
+                            </form></th>
                         </tr>";
                     $count += 1;
                 }
@@ -108,7 +125,6 @@
                 <th>Doctor</th>
                 <th>Service</th>
                 <th>Price</th>
-                <th>Comments</th>
                 <th>Review</th>
             </tr>   
         <?php
@@ -155,6 +171,14 @@
                         $getComment = "SELECT comment_value FROM comment WHERE comment_id = NULL";
                         $commentresult = mysqli_query($con, $getComment); // Select rows with same username
                         $comment = mysqli_fetch_array($commentresult);
+                    if(!is_null($row[7])) {
+                        $getReview = "SELECT review_value FROM review WHERE review_id = $row[7]";
+                        $reviewResult = mysqli_query($con, $getReview); // Select rows with same username
+                        $review = mysqli_fetch_array($reviewResult);
+                    } else {
+                        $getReview = "SELECT review_value FROM review WHERE review_id = NULL";
+                        $reviewResult = mysqli_query($con, $getReview); // Select rows with same username
+                        $review = mysqli_fetch_array($reviewResult);
                     }
                     echo "<tr>
                             <th>$count</th>
@@ -169,6 +193,8 @@
                             </form></th>
                             <th><form action='deleteAppointment.php' method='post'><input type='hidden' name='apt_del'
                                 value=$row[0]><input type='submit' value='DELETE'>
+                                <textarea id='review' name='review$row[0]' cols='40' rows='5'>$review[0]</textarea>
+                                <input type='submit' value='Submit'/>
                             </form></th>
                         </tr>";
                     $count += 1;
