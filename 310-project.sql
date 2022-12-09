@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 09, 2022 at 09:10 PM
+-- Generation Time: Dec 09, 2022 at 11:05 PM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -70,7 +70,9 @@ INSERT INTO `appointment` (`apt_id`, `apt_date`, `apt_start_time`, `apt_end_time
 (1, '2022-12-06', '12:30:40', '13:00:40', 50, 1, 8, 4, NULL, NULL),
 (2, '2022-12-18', '12:00:12', '23:48:55', 100, 3, 8, 6, NULL, NULL),
 (3, '2022-12-06', '23:36:36', '00:36:41', 200, 4, 8, 7, NULL, NULL),
-(4, '2022-12-09', '14:56:53', '15:26:54', 50, 1, 9, 4, NULL, NULL);
+(4, '2022-12-09', '14:56:53', '15:26:54', 50, 1, 9, 4, NULL, 6),
+(8, '2022-12-09', '16:38:25', '17:23:30', 80, 2, 9, 5, 4, 4),
+(9, '2022-12-09', '16:38:32', '17:38:35', 200, 4, 9, 5, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -86,6 +88,56 @@ CREATE TABLE `comment` (
   `admin_id` int(11) NOT NULL,
   `apt_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`comment_id`, `comment_date`, `comment_value`, `user_id`, `admin_id`, `apt_id`) VALUES
+(4, '2022-12-09 22:42:47', 'nothing to note. business as usual', 9, 5, 8),
+(5, '2022-12-09 22:43:10', 'patient complained but everything went fine. follow up at next appt.', 9, 5, 9);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `gage_info`
+-- (See below for the actual view)
+--
+CREATE TABLE `gage_info` (
+`username` varchar(255)
+,`user_fname` varchar(255)
+,`user_lname` varchar(255)
+,`user_phone` varchar(255)
+,`is_admin` tinyint(1)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `jackson_info`
+-- (See below for the actual view)
+--
+CREATE TABLE `jackson_info` (
+`username` varchar(255)
+,`user_fname` varchar(255)
+,`user_lname` varchar(255)
+,`user_phone` varchar(255)
+,`is_admin` tinyint(1)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `kieran_info`
+-- (See below for the actual view)
+--
+CREATE TABLE `kieran_info` (
+`username` varchar(255)
+,`user_fname` varchar(255)
+,`user_lname` varchar(255)
+,`user_phone` varchar(255)
+,`is_admin` tinyint(1)
+);
 
 -- --------------------------------------------------------
 
@@ -132,6 +184,15 @@ CREATE TABLE `review` (
   `apt_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`review_id`, `review_date`, `review_value`, `user_id`, `admin_id`, `apt_id`) VALUES
+(4, '2022-12-09 22:38:49', 'great teeth cleaning!', 9, 5, 8),
+(5, '2022-12-09 22:39:08', 'tooth extraction sucks', 9, 5, 9),
+(6, '2022-12-09 22:41:18', 'gage was very kind during the consultation!', 9, 4, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -160,6 +221,20 @@ INSERT INTO `service` (`service_id`, `service_est_time`, `service_name`, `servic
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `shane_info`
+-- (See below for the actual view)
+--
+CREATE TABLE `shane_info` (
+`username` varchar(255)
+,`user_fname` varchar(255)
+,`user_lname` varchar(255)
+,`user_phone` varchar(255)
+,`is_admin` tinyint(1)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -179,6 +254,42 @@ INSERT INTO `user` (`user_id`, `user_age`, `user_state`, `user_zip`, `user_stree
 (8, 22, 'TX', 75214, 'Test street'),
 (9, 22, 'TX', 77840, 'no'),
 (10, 22, 'TX', 77840, '601 Luther St W');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `gage_info`
+--
+DROP TABLE IF EXISTS `gage_info`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `gage_info`  AS SELECT `profile`.`username` AS `username`, `profile`.`user_fname` AS `user_fname`, `profile`.`user_lname` AS `user_lname`, `profile`.`user_phone` AS `user_phone`, `profile`.`is_admin` AS `is_admin` FROM `profile` WHERE (`profile`.`profile_id` = 4) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `jackson_info`
+--
+DROP TABLE IF EXISTS `jackson_info`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jackson_info`  AS SELECT `profile`.`username` AS `username`, `profile`.`user_fname` AS `user_fname`, `profile`.`user_lname` AS `user_lname`, `profile`.`user_phone` AS `user_phone`, `profile`.`is_admin` AS `is_admin` FROM `profile` WHERE (`profile`.`profile_id` = 5) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `kieran_info`
+--
+DROP TABLE IF EXISTS `kieran_info`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `kieran_info`  AS SELECT `profile`.`username` AS `username`, `profile`.`user_fname` AS `user_fname`, `profile`.`user_lname` AS `user_lname`, `profile`.`user_phone` AS `user_phone`, `profile`.`is_admin` AS `is_admin` FROM `profile` WHERE (`profile`.`profile_id` = 6) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `shane_info`
+--
+DROP TABLE IF EXISTS `shane_info`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `shane_info`  AS SELECT `profile`.`username` AS `username`, `profile`.`user_fname` AS `user_fname`, `profile`.`user_lname` AS `user_lname`, `profile`.`user_phone` AS `user_phone`, `profile`.`is_admin` AS `is_admin` FROM `profile` WHERE (`profile`.`profile_id` = 7) ;
 
 --
 -- Indexes for dumped tables
@@ -245,13 +356,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `apt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `apt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `profile`
@@ -263,7 +374,7 @@ ALTER TABLE `profile`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `service`
