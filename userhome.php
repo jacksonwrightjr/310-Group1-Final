@@ -224,7 +224,7 @@ if($_POST) {
         // Print '<script>alert("made it here!");</script>';
 
         if (isset($_POST["comment$appIds[$x]"])) {
-            Print '<script>alert("made it to comment!");</script>';
+            // Print '<script>alert("made it to comment!");</script>';
             $sql = "INSERT INTO comment (comment_id, comment_date, comment_value, user_id, admin_id, apt_id) VALUES (0, '$date', '$comment', (SELECT user_id FROM appointment WHERE apt_id = $appIds[$x]), (SELECT admin_id FROM appointment WHERE apt_id = $appIds[$x]), $appIds[$x])";
             if($con->query($sql) === TRUE) {
                 $sql = "UPDATE appointment SET comment_id = $con->insert_id WHERE apt_id = $appIds[$x]";
@@ -240,7 +240,7 @@ if($_POST) {
                 Print '<script>window.location.assign("userhome.php");</script>';
             }
         } elseif (isset($_POST["review$appIds[$x]"])) {
-            Print '<script>alert("made it to review!");</script>';
+            // Print '<script>alert("made it to review!");</script>';
             $sql = "INSERT INTO review (review_id, review_date, review_value, user_id, admin_id, apt_id) VALUES (0, '$date', '$review', (SELECT user_id FROM appointment WHERE apt_id = $appIds[$x]), (SELECT admin_id FROM appointment WHERE apt_id = $appIds[$x]), $appIds[$x])";
             if ($con->query($sql) === TRUE) {
                 $sql = "UPDATE appointment SET review_id = $con->insert_id WHERE apt_id = $appIds[$x]";
@@ -258,7 +258,7 @@ if($_POST) {
             }
         } else {
             // do nothing, no comment or review added
-            Print '<script>alert("Nothing happened");</script>';
+            // Print '<script>alert("Nothing happened");</script>';
         }
         
     }
